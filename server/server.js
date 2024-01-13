@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require("path");
 
 require('dotenv').config({ path : "./config.env"});
 const port = process.env.PORT || 5000;
@@ -15,6 +16,13 @@ const con = require('./db/connection.js');
 
 // using routes
 app.use(require('./routes/route'));
+
+//static files
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 con.then(db => {
     if(!db) return process.exit(1);
