@@ -1,0 +1,37 @@
+# Query: http://localhost:8080
+# ContextLines: 1
+
+12 results - 3 files
+
+client\build\static\js\main.793d8c32.js:
+  1  /*! For license information please see main.793d8c32.js.LICENSE.txt */
+  2: ⟪ 483017 characters skipped ⟫ion f(t,e){if("function"===typeof e)return e(t);if("content-type"===e&&(e=i(t.headers)?"json":"text"),"json"===e){const e=await t.text();return e.length?JSON.parse(e):null}return t.text()}}({baseUrl:"https://spendsmart-w07k.onrender.com"}),endpoints:t=>({getCategories:t.query({query:()=>"/api/categories",providesTags:["categories"]}),getLabels:t.query({query:()=>"/api/labels",providesTags:["transaction"]}),addTransaction:t.mutation({query:t=>({url:"/api/transaction",method:"POST",body:t}),invalidatesTags:["transaction"]}),deleteTransaction:t.mutation({query:t=>({url:"/api/transaction",method:"DELETE",body:t}),invalidatesTags:["transaction"]})})}),$u=Qu;var Ku=n(763),Yu=n.n(Ku);function Xu(t,e){return Yu()(t).groupBy("type").map(((t,n)=>e?{type:n,color:t[0].color,total:Yu().sumBy(t,"amount")}:Yu().sumBy(t,"amount"))).value()}function Gu(t,e){let n=Yu().map(t,(t=>t.color));n=Yu().uniq(n);let r=Xu(t);return null!==e&&void 0!==e?e:{data:{datasets:[{data:r,backgroundColor:n,hoverOffset:4,borderRadius:30,spacing:10}]},options:{cutout:115}}}var Zu=n(184);const Ju=()=>{const{data:t,isFetching:e,isSuccess:n,isError:r}=$u.useGetLabelsQuery();let i;return e?i=(0,Zu.jsx)("div",{children:"Fetching"}):n?i=func
+  3  //# sourceMappingURL=main.793d8c32.js.map
+
+client\build\static\js\main.793d8c32.js.map:
+  1: ⟪ 2668543 characters skipped ⟫utationResult } from './buildHooks';\nexport { createApi, reactHooksModule, reactHooksModuleName };","import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';\r\n\r\nconst baseURI = 'http://localhost:8080';\r\n\r\nexport const apiSlice = createApi({\r\n    baseQuery : fetchBaseQuery({ baseUrl : baseURI}),\r\n    endpoints : builder => ({\r\n        // get categories\r\n        getCategories : builder.query({\r\n            // get: 'http://localhost:8080/api/categories'\r\n            query: () => '/api/categories',\r\n            providesTags: ['categories']\r\n        }),\r\n\r\n        // get labels\r\n        getLabels : builder.query({\r\n        //     // get: 'http://localhost:8080/api/labels'\r\n            query : () => '/api/labels',\r\n            providesTags: ['transaction']\r\n        }),\r\n\r\n        // // add new Transaction\r\n        addTransaction : builder.mutation({\r\n            query : (initialTransaction) => ({\r\n        //           // post: 'http://localhost:8080/api/transaction'\r\n                url: '/api/transaction',\r\n                method: \"POST\",\r\n                body: initialTransaction\r\n            }),\r\n            invalidatesTags: ['transaction']\r\n        }),\r\n\r\n        // // delete record\r\n        deleteTransaction : builder.mutation({\r\n            query : recordId => ({\r\n        //         // delete: 'http://localhost:8080/api/transaction'\r\n                url : '/api/transaction',\r\n                method : \"DELETE\",\r\n                body : recordId\r\n            }),\r\n            invalidatesTags: ['transaction']\r\n        })\r\n\r\n    })\r\n})\r\n\r\nexport default apiSlice;","import  _ from 'lodash';\r\n\r\nexport function getSum(transaction, type){\r\n    let sum = _(transaction)\r\n                      .groupBy(\"type\")\r\n                      .map((objs, key) => {\r\n                        if(!type) return _.sumBy(objs, 'amount'); // [300, 350, 500]\r\n                        return {\r\n                            'type' : key,\r\n                            'color' : objs[0].color,\r\n                            'total' : _.sumBy(objs, 'amount')\r\n                        }\r\n                      })\r\n                      .value()\r\n    return sum;\r\n}\r\n\r\nexport function getLabels(transaction){\r\n    let amountSum = getSum(transaction, 'type');\r\n 
+
+controller\controller.js:
+   2  
+   3: //  post: http://localhost:8080/api/categories
+   4  async function create_Categories(req, res){
+
+  23  
+  24: //  get: http://localhost:8080/api/categories
+  25  async function  get_Categories(req, res){
+
+  32  
+  33: // //  post: http://localhost:8080/api/transaction
+  34  async function create_Transaction(req, res){
+
+  59  
+  60: // //  get: http://localhost:8080/api/transaction
+  61  async function get_Transaction(req, res){
+
+  65  
+  66: // //  delete: http://localhost:8080/api/transaction
+  67  async function delete_Transaction(req, res){
+
+  80  
+  81: // //  get: http://localhost:8080/api/labels
+  82  async function get_Labels(req, res){

@@ -1,6 +1,6 @@
 const model = require('../models/model');
 
-//  post: http://localhost:8080/api/categories
+//  post: https://spendsmart-w07k.onrender.com/api/categories
 async function create_Categories(req, res){
    const Create = new model.Categories({
        type: "Investment",
@@ -21,7 +21,7 @@ try {
 
 }
 
-//  get: http://localhost:8080/api/categories
+//  get: https://spendsmart-w07k.onrender.com/api/categories
 async function  get_Categories(req, res){
     let data = await model.Categories.find({})
 
@@ -30,7 +30,7 @@ async function  get_Categories(req, res){
     // return res.json(data);
 }
 
-// //  post: http://localhost:8080/api/transaction
+// //  post: https://spendsmart-w07k.onrender.com/api/transaction
 async function create_Transaction(req, res){
     if(!req.body) return res.status(400).json("Post HTTP Data not Provided");
     let { name, type, amount } = req.body;
@@ -57,13 +57,13 @@ async function create_Transaction(req, res){
 
 }
 
-// //  get: http://localhost:8080/api/transaction
+// //  get: https://spendsmart-w07k.onrender.com/api/transaction
 async function get_Transaction(req, res){
     let data = await model.Transaction.find({});
     return res.json(data);
 }
 
-// //  delete: http://localhost:8080/api/transaction
+// //  delete: https://spendsmart-w07k.onrender.com/api/transaction
 async function delete_Transaction(req, res){
     if (!req.body) res.status(400).json({ message: "Request body not Found"});
     // await model.Transaction.deleteOne(req.body, function(err){
@@ -78,7 +78,7 @@ async function delete_Transaction(req, res){
 
 }
 
-// //  get: http://localhost:8080/api/labels
+// //  get: https://spendsmart-w07k.onrender.com/api/labels
 async function get_Labels(req, res){
 
     model.Transaction.aggregate([
